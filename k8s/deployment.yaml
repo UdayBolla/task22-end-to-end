@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: task22-nginx-deployment
+  labels:
+    app: task22-nginx
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: task22-nginx
+
+  template:
+    metadata:
+      labels:
+        app: task22-nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: task22-nginx:1.0
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 80
+
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: task22-config
+                  key: APP_NAME
+
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: task22-config
+                  key: APP_ENV
+
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: task22-config
+                  key: LOG_LEVEL
+
+            - name: TEST_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: task22-secret
+                  key: TEST_SECRET
