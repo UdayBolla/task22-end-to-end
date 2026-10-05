@@ -1,0 +1,33 @@
+TASK 22 ARCHITECTURE
+
+Developer
+   |
+   v
+GitHub Repository
+   |
+   v
+Dockerfile
+   |
+   v
+Docker Image
+task22-nginx:1.0
+   |
+   v
+Minikube
+   |
+   v
+Kubernetes Deployment
+   |
+   +---- Pod 1
+   +---- Pod 2
+   +---- Pod 3
+   |
+   +---- ConfigMap
+   |
+   +---- Secret
+   |
+   v
+Kubernetes Service
+   |
+   v
+NGINX Application
